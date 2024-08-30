@@ -29,7 +29,8 @@ public class UserDAO implements IDAO<User> {
             //
             TypedQuery<User> query = em.createQuery("select u from User u", User.class);
             List<User> userelist = query.getResultList();
-            return userelist.stream().collect(Collectors.toSet());
+            return userelist.stream()
+                    .collect(Collectors.toSet());
         }
     }
 
