@@ -37,11 +37,18 @@ public class GLSPackages {
     @Column(name = "last_updated", nullable = false)
     private LocalDateTime lastUpdated;
 
+    @Builder
+    public GLSPackages(String trackingNumber, String senderName, String reciverName, DeliveryStatus deliveryStatus) {
+        this.trackingNumber = trackingNumber;
+        this.senderName = senderName;
+        this.reciverName = reciverName;
+        this.deliveryStatus = deliveryStatus;
+    }
+
     //The method should be called before the entity is saved to the database
     // weather if it's a new entity or an update to an existing one.
     @PrePersist
     @PreUpdate
-
     // sets the lastUpdated field to the current date and time.
     protected void onUpdate() {
         lastUpdated = LocalDateTime.now();

@@ -12,15 +12,25 @@ import java.util.stream.Collectors;
 
 public class PackageDAO {
 
-    private EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
+    private EntityManagerFactory emf;
 
+    public PackageDAO(EntityManagerFactory emf) {
+        this.emf = HibernateConfig.getEntityManagerFactory();;
+    }
+
+    public GLSPackages getById(Integer id) {
+        try(EntityManager em = emf.createEntityManager()) {
+            return em.find(GLSPackages.class, id);
+        }
+    }
     //Create methood
-    public void create (GLSPackages packages) {
+    public GLSPackages create (GLSPackages packages) {
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.persist(packages);
             em.getTransaction().commit();
         }
+        return packages;
     }
     //Read
     public Set <GLSPackages> getAll() {
@@ -34,18 +44,20 @@ public class PackageDAO {
 
 
 // Update
-    public void update (GLSPackages packages) {
+    public GLSPackages update (GLSPackages packages) {
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.merge(packages);
             em.getTransaction().commit();
         }
+        return packages;
     }
-    public void delete (GLSPackages packages) {
+    public GLSPackages delete (GLSPackages packages) {
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.remove(packages);
             em.getTransaction().commit();
         }
+        return packages;
     }
 }
