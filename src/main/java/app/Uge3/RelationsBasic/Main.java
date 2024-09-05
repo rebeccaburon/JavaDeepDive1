@@ -1,5 +1,6 @@
 package app.Uge3.RelationsBasic;
 
+import app.Uge3.RelationsBasic.entitie.Event;
 import app.Uge3.RelationsBasic.entitie.Fee;
 import app.Uge3.RelationsBasic.entitie.Person;
 import app.Uge3.RelationsBasic.entitie.PersonDetail;
@@ -27,6 +28,16 @@ public class Main {
 
             p1.addFee(f1);
             p1.addFee(f2);
+
+            Event e1 = new Event(LocalDate.of(2004, 12,20), "DM Senior");
+            Event e2 = new Event(LocalDate.of(2006, 5,8), "SM Unior");
+            p1.addEvent(e1);
+            p1.addEvent(e2);
+            //adding ID til event - and making sure it god Manged
+            em.persist(e1);
+            em.persist(e2);
+
+
 
             em.getTransaction().begin();
             em.persist(p1);

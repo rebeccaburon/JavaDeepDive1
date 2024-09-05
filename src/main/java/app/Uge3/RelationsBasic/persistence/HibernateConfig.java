@@ -1,4 +1,5 @@
 package app.Uge3.RelationsBasic.persistence;
+import app.Uge3.RelationsBasic.entitie.Event;
 import app.Uge3.RelationsBasic.entitie.Fee;
 import app.Uge3.RelationsBasic.entitie.Person;
 import app.Uge3.RelationsBasic.entitie.PersonDetail;
@@ -37,6 +38,7 @@ public class HibernateConfig {
         configuration.addAnnotatedClass(Person.class);
         configuration.addAnnotatedClass(PersonDetail.class);
         configuration.addAnnotatedClass(Fee.class);
+        configuration.addAnnotatedClass(Event.class);
 
     }
 

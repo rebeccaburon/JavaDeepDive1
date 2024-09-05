@@ -33,16 +33,19 @@ public class Person {
     @OneToMany(mappedBy = "person",cascade = CascadeType.ALL)
     private Set<Fee> fees = new HashSet<>();
 
-    //Adding an amount to the Set of fees.
-    public void addFee(Fee fee) {
-        this.fees.add(fee);
-        if(fee != null){
-            fee.setPerson(this);
-        }
+
+    //Relation m:m
+    @ManyToMany
+    private Set <Event> events = new HashSet<>();
+
+    //Unidirectional add
+    public void addEvent(Event event) {
+        this.events.add(event);
     }
 
 
-    //B-direction method
+
+    //Bidirection method
 
     public void addPersonDetails(PersonDetail personDetail) {
         this.personDetail = personDetail;
@@ -51,6 +54,14 @@ public class Person {
         }
     }
 
+
+    //Adding an amount to the Set of fees.
+    public void addFee(Fee fee) {
+        this.fees.add(fee);
+        if(fee != null){
+            fee.setPerson(this);
+        }
+    }
 
 
 }
