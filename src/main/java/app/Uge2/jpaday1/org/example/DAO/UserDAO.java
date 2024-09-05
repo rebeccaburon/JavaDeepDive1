@@ -52,7 +52,6 @@ public class UserDAO implements IDAO<User> {
             em.merge(user);
             em.getTransaction().commit();
         }
-
     }
 
     @Override

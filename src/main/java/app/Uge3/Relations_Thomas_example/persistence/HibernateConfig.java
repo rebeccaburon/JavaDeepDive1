@@ -1,6 +1,6 @@
-package app.Uge2.jpaday1.org.example.persistence;
-
-import app.Uge2.jpaday1.org.example.entities.User;
+package app.Uge3.Relations_Thomas_example.persistence;
+import app.Uge3.Relations_Thomas_example.entities.Emloyee;
+import app.Uge3.Relations_Thomas_example.entities.Adress;
 import jakarta.persistence.EntityManagerFactory;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -9,15 +9,16 @@ import org.hibernate.service.ServiceRegistry;
 
 import java.util.Properties;
 
+
 /**
  * Purpose: This class is used to configure Hibernate and create an EntityManagerFactory.
  * Author: Thomas Hartmann
  */
 public class HibernateConfig {
     private static EntityManagerFactory emf;
-    public static boolean isIntegrationTest = false; // this flag is set for
+    private static boolean isIntegrationTest = false; // this flag is set for
     public static void setTestMode(boolean isTest) {
-        HibernateConfig.isIntegrationTest = isTest;
+        app.Uge2.jpaday1.org.example.persistence.HibernateConfig.isIntegrationTest = isTest;
     }
 
     private static EntityManagerFactory emfTest;
@@ -33,7 +34,8 @@ public class HibernateConfig {
     }
     // TODO: IMPORTANT: Add Entity classes here for them to be registered with Hibernate
     private static void getAnnotationConfiguration(Configuration configuration) {
-        configuration.addAnnotatedClass(User.class);
+        configuration.addAnnotatedClass(Emloyee.class);
+        configuration.addAnnotatedClass(Adress.class);
 
     }
 
@@ -66,7 +68,7 @@ public class HibernateConfig {
     }
 
     private static String getDBName() {
-        return "jpaday1";
+        return "jparelations";
     }
     private static Properties setBaseProperties(Properties props){
         props.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");

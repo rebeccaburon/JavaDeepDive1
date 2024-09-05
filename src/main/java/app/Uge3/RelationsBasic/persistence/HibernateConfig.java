@@ -1,6 +1,7 @@
-package app.Uge2.jpaday1.org.example.persistence;
-
-import app.Uge2.jpaday1.org.example.entities.User;
+package app.Uge3.RelationsBasic.persistence;
+import app.Uge3.RelationsBasic.entitie.Fee;
+import app.Uge3.RelationsBasic.entitie.Person;
+import app.Uge3.RelationsBasic.entitie.PersonDetail;
 import jakarta.persistence.EntityManagerFactory;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -15,9 +16,9 @@ import java.util.Properties;
  */
 public class HibernateConfig {
     private static EntityManagerFactory emf;
-    public static boolean isIntegrationTest = false; // this flag is set for
+    private static boolean isIntegrationTest = false; // this flag is set for
     public static void setTestMode(boolean isTest) {
-        HibernateConfig.isIntegrationTest = isTest;
+        app.Uge2.jpaday1.org.example.persistence.HibernateConfig.isIntegrationTest = isTest;
     }
 
     private static EntityManagerFactory emfTest;
@@ -33,7 +34,9 @@ public class HibernateConfig {
     }
     // TODO: IMPORTANT: Add Entity classes here for them to be registered with Hibernate
     private static void getAnnotationConfiguration(Configuration configuration) {
-        configuration.addAnnotatedClass(User.class);
+        configuration.addAnnotatedClass(Person.class);
+        configuration.addAnnotatedClass(PersonDetail.class);
+        configuration.addAnnotatedClass(Fee.class);
 
     }
 
@@ -66,7 +69,7 @@ public class HibernateConfig {
     }
 
     private static String getDBName() {
-        return "jpaday1";
+        return "jparelations";
     }
     private static Properties setBaseProperties(Properties props){
         props.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
