@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,13 +36,19 @@ public class Person {
 
 
     //Relation m:m
-    @ManyToMany
-    private Set <Event> events = new HashSet<>();
+   /* @ManyToMany //(cascade = CascadeType.PERSIST) -->  Instead of the persist of events in Main
+    private Set <Event> events = new HashSet<>();*/
+
+
+    //Relation with Linktabel 1:m
+    @OneToMany (mappedBy = "person", cascade = CascadeType.ALL) //perosn in PersonEvent
+    private Set<PersonEvent> events = new HashSet<>();
+
 
     //Unidirectional add
-    public void addEvent(Event event) {
-        this.events.add(event);
-    }
+//    public void addEvent(Event event) {
+//        this.events.add(event);
+//    }
 
 
 
@@ -61,6 +68,13 @@ public class Person {
         if(fee != null){
             fee.setPerson(this);
         }
+    }
+
+    ////Unidirectional add with Linked tabel
+    public void addEvent (Person person, Event event, LocalDate signUpDate, int eventFee){
+        PersonEvent personEvent = new PersonEvent(person, event, signUpDate, eventFee);
+        this.events.add(personEvent);
+
     }
 
 

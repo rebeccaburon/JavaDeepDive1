@@ -18,8 +18,8 @@ public class Main {
         try (EntityManager em = emf.createEntityManager()) {
 
             //OneToOne
-            Person p1 = new Person("Søren");
-            PersonDetail pd1 = new PersonDetail("Danstruvej 6", "Copenhagen", 69, 2100);
+            Person p1 = new Person("Lisa");
+            PersonDetail pd1 = new PersonDetail("Åblouevarden 4", "Copenhagen", 74, 2420);
             p1.addPersonDetails(pd1);
 
             //Adding fee to person, by getting a Person object and then adding a fee to the person.
@@ -29,13 +29,19 @@ public class Main {
             p1.addFee(f1);
             p1.addFee(f2);
 
-            Event e1 = new Event(LocalDate.of(2004, 12,20), "DM Senior");
+            Event e1 = new Event(LocalDate.of(2004, 12,20),"DM Senior");
             Event e2 = new Event(LocalDate.of(2006, 5,8), "SM Unior");
-            p1.addEvent(e1);
-            p1.addEvent(e2);
+//            p1.addEvent(e1);
+//            p1.addEvent(e2);
+
+            //Adding event with via a Linked Tabel being the PersonEvent
+            p1.addEvent(p1,e1,LocalDate.of(2023, 9,21), 120);
+            p1.addEvent(p1,e1,LocalDate.of(2003, 6,10), 500);
+
             //adding ID til event - and making sure it god Manged
             em.persist(e1);
             em.persist(e2);
+
 
 
 

@@ -1,8 +1,5 @@
 package app.Uge3.RelationsBasic.persistence;
-import app.Uge3.RelationsBasic.entitie.Event;
-import app.Uge3.RelationsBasic.entitie.Fee;
-import app.Uge3.RelationsBasic.entitie.Person;
-import app.Uge3.RelationsBasic.entitie.PersonDetail;
+import app.Uge3.RelationsBasic.entitie.*;
 import jakarta.persistence.EntityManagerFactory;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -39,6 +36,7 @@ public class HibernateConfig {
         configuration.addAnnotatedClass(PersonDetail.class);
         configuration.addAnnotatedClass(Fee.class);
         configuration.addAnnotatedClass(Event.class);
+        configuration.addAnnotatedClass(PersonEvent.class);
 
     }
 
