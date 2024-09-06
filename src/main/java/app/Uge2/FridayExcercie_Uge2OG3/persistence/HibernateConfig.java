@@ -1,6 +1,8 @@
-package app.Uge2.FridayExcercie.persistence;
+package app.Uge2.FridayExcercie_Uge2OG3.persistence;
 
-import app.Uge2.FridayExcercie.entities.GLSPackages;
+import app.Uge2.FridayExcercie_Uge2OG3.entities.Location;
+import app.Uge2.FridayExcercie_Uge2OG3.entities.Packages;
+import app.Uge2.FridayExcercie_Uge2OG3.entities.Shipment;
 import jakarta.persistence.EntityManagerFactory;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -17,7 +19,7 @@ public class HibernateConfig {
     private static EntityManagerFactory emf;
     private static boolean isIntegrationTest = false; // this flag is set for
     public static void setTestMode(boolean isTest) {
-        app.Uge2.FridayExcercie.persistence.HibernateConfig.isIntegrationTest = isTest;
+        app.Uge2.FridayExcercie_Uge2OG3.persistence.HibernateConfig.isIntegrationTest = isTest;
     }
 
     private static EntityManagerFactory emfTest;
@@ -33,7 +35,9 @@ public class HibernateConfig {
     }
     // TODO: IMPORTANT: Add Entity classes here for them to be registered with Hibernate
     private static void getAnnotationConfiguration(Configuration configuration) {
-        configuration.addAnnotatedClass(GLSPackages.class);
+        configuration.addAnnotatedClass(Packages.class);
+        configuration.addAnnotatedClass(Location.class);
+        configuration.addAnnotatedClass(Shipment.class);
 
 
     }

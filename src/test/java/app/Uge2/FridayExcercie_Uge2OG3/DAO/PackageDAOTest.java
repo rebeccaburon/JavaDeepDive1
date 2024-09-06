@@ -1,13 +1,13 @@
-package app.Uge2.FridayExcercie.DAO;
+package app.Uge2.FridayExcercie_Uge2OG3.DAO;
 
-import app.Uge2.FridayExcercie.entities.GLSPackages;
+import app.Uge2.FridayExcercie_Uge2OG3.entities.Packages;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import app.Uge2.FridayExcercie.persistence.HibernateConfig;
+import app.Uge2.FridayExcercie_Uge2OG3.persistence.HibernateConfig;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,7 +16,7 @@ class PackageDAOTest {
     private static EntityManagerFactory emf;
     private static PackageDAO packageDAO;
 
-    GLSPackages packages1, packages2, packages3;
+    Packages packages1, packages2, packages3;
 
     @BeforeAll
     static void setUpAll() {
@@ -33,11 +33,11 @@ class PackageDAOTest {
     @BeforeEach
     void setUp(){
         EntityManager em = emf.createEntityManager();
-        packages1 = new GLSPackages("87854","TEST1","TEST1", GLSPackages.DeliveryStatus.PENDING);
-        packages2 = new GLSPackages("58796","TEST1","TEST1", GLSPackages.DeliveryStatus.PENDING);
-        packages3 = new GLSPackages("65946","TEST1","TEST1", GLSPackages.DeliveryStatus.PENDING);
+        packages1 = new Packages("87854","TEST1","TEST1", Packages.DeliveryStatus.PENDING);
+        packages2 = new Packages("58796","TEST1","TEST1", Packages.DeliveryStatus.PENDING);
+        packages3 = new Packages("65946","TEST1","TEST1", Packages.DeliveryStatus.PENDING);
         em.getTransaction().begin();
-        em.createQuery("DELETE FROM GLSPackages").executeUpdate();
+        em.createQuery("DELETE FROM Packages").executeUpdate();
         em.persist(packages1);
         em.persist(packages2);
         em.persist(packages3);
@@ -50,10 +50,10 @@ class PackageDAOTest {
     @Test
     void create() {
         //Arrange
-        GLSPackages actualPackage = new GLSPackages("86540","Birgitte Hansen", "Hans Pedersen", GLSPackages.DeliveryStatus.DELIVERED);
+        Packages actualPackage = new Packages("86540","Birgitte Hansen", "Hans Pedersen", Packages.DeliveryStatus.DELIVERED);
 
         //Act
-        GLSPackages expectedPackage = packageDAO.create(actualPackage);
+        Packages expectedPackage = packageDAO.create(actualPackage);
 
         //Assert
         assertNotNull (expectedPackage);
@@ -64,7 +64,7 @@ class PackageDAOTest {
     @Test
     public void testGetAll() {
         // Arrange
-        Set<GLSPackages> packagesSet = packageDAO.getAll();
+        Set<Packages> packagesSet = packageDAO.getAll();
 
         // Assert
         assertNotNull(packagesSet);
@@ -73,7 +73,7 @@ class PackageDAOTest {
         assertFalse(packagesSet.isEmpty());
 
         // Assert
-        for (GLSPackages pkg : packagesSet) {
+        for (Packages pkg : packagesSet) {
             assertNotNull(pkg);
         }
     }
@@ -81,10 +81,10 @@ class PackageDAOTest {
     @Test
     void update() {
         //Arrange
-        GLSPackages actualUpdate = packages2;
+        Packages actualUpdate = packages2;
 
         //Act
-        GLSPackages expectedUpdate = packageDAO.update(actualUpdate);
+        Packages expectedUpdate = packageDAO.update(actualUpdate);
 
         //Assert
         assertNotNull(expectedUpdate);
@@ -94,10 +94,10 @@ class PackageDAOTest {
     @Test
     void delete() {
         //Arrange
-        GLSPackages actualDelete = packages3;
+        Packages actualDelete = packages3;
 
         //Act
-        GLSPackages expectedDelete = packageDAO.delete(actualDelete);
+        Packages expectedDelete = packageDAO.delete(actualDelete);
 
         //Assert
         assertNotNull(expectedDelete);

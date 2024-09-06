@@ -1,7 +1,7 @@
-package app.Uge2.FridayExcercie.DAO;
+package app.Uge2.FridayExcercie_Uge2OG3.DAO;
 
-import app.Uge2.FridayExcercie.entities.GLSPackages;
-import app.Uge2.FridayExcercie.persistence.HibernateConfig;
+import app.Uge2.FridayExcercie_Uge2OG3.entities.Packages;
+import app.Uge2.FridayExcercie_Uge2OG3.persistence.HibernateConfig;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;
@@ -18,13 +18,13 @@ public class PackageDAO {
         this.emf = HibernateConfig.getEntityManagerFactory();;
     }
 
-    public GLSPackages getById(Integer id) {
+    public Packages getById(Integer id) {
         try(EntityManager em = emf.createEntityManager()) {
-            return em.find(GLSPackages.class, id);
+            return em.find(Packages.class, id);
         }
     }
     //Create methood
-    public GLSPackages create (GLSPackages packages) {
+    public Packages create (Packages packages) {
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.persist(packages);
@@ -33,10 +33,10 @@ public class PackageDAO {
         return packages;
     }
     //Read
-    public Set <GLSPackages> getAll() {
+    public Set <Packages> getAll() {
         try(EntityManager em = emf.createEntityManager()) {
-            TypedQuery query = em.createQuery("SELECT P FROM GLSPackages P", GLSPackages.class);
-            List<GLSPackages> packages = query.getResultList();
+            TypedQuery query = em.createQuery("SELECT P FROM Packages P", Packages.class);
+            List<Packages> packages = query.getResultList();
             return packages.stream()
                     .collect(Collectors.toSet());
         }
@@ -44,7 +44,7 @@ public class PackageDAO {
 
 
 // Update
-    public GLSPackages update (GLSPackages packages) {
+    public Packages update (Packages packages) {
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.merge(packages);
@@ -52,7 +52,7 @@ public class PackageDAO {
         }
         return packages;
     }
-    public GLSPackages delete (GLSPackages packages) {
+    public Packages delete (Packages packages) {
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.remove(packages);
