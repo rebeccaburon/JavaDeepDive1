@@ -11,9 +11,8 @@ import java.util.Set;
 @Setter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Location {
+    @Setter(AccessLevel.NONE)
     @Id @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -33,10 +32,11 @@ public class Location {
     private Set<Shipment> destinationsLocations = new HashSet<>();
 
 
-    public Location(String address, double longitude, double latitude) {
-        this.address = address;
-        this.longitude = longitude;
+    @Builder
+    public Location(double latitude, double longitude, String address) {
         this.latitude = latitude;
+        this.longitude = longitude;
+        this.address = address;
     }
     //Bi direction Metod --> Both entites are aware of the relationship.
 

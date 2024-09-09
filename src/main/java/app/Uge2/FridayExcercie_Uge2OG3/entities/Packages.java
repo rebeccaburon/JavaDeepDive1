@@ -48,6 +48,7 @@ public class Packages {
         this.senderName = senderName;
         this.reciverName = reciverName;
         this.deliveryStatus = deliveryStatus;
+        this.shipments = new HashSet<>();
     }
 
     //The method should be called before the entity is saved to the database
@@ -68,6 +69,7 @@ public class Packages {
 
     public void addShipment(Shipment shipment) {
         this.shipments.add(shipment);
+
     }
 
 }

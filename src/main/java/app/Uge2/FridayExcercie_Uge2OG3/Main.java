@@ -16,14 +16,14 @@ public class Main {
         LocationDAO locationDAO = new LocationDAO(HibernateConfig.getEntityManagerFactory());
         ShipmentDAO shipmentDAO = new ShipmentDAO(HibernateConfig.getEntityManagerFactory());
 
-        Location sourceLocation = locationDAO.createLocation(
+        Location sourceLocation = locationDAO.createSourceLocation(
                 Location.builder()
                         .address("Østerbrogade 113")
                         .latitude(55.78)
                         .longitude(12.456)
                         .build()
         );
-        Location destionationLocation = locationDAO.createLocation(
+        Location destionationLocation = locationDAO.createDestionationLocation(
                 Location.builder()
                         .address("Estersvej 34")
                         .latitude(33.73)
@@ -32,7 +32,7 @@ public class Main {
         );
 
 
-        Packages package1 =  packageDAO.create(
+        Packages package1 = packageDAO.create(
                 Packages.builder()
                         .trackingNumber("84595")
                         .deliveryStatus(Packages.DeliveryStatus.PENDING)
@@ -51,8 +51,14 @@ public class Main {
                         .build()
         );
 
+        sourceLocation.addSourcesLocation(shipment);
+        locationDAO.updateLocation(sourceLocation);
 
+        destionationLocation.addDestinationLocation(shipment);
+        locationDAO.updateLocation(destionationLocation);
 
+        package1.addShipment(shipment);
+        packageDAO.update(package1);
 
 
         /***  GLS Package Tracking System - Part 1
